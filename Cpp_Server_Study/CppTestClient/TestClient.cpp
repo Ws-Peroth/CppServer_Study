@@ -1,12 +1,12 @@
-#define _WINSOCK_DEPRECATED_NO_WARNINGS
+Ôªø#define _WINSOCK_DEPRECATED_NO_WARNINGS
 #include <stdio.h>
 #include <WinSock2.h>
 
 #pragma comment(lib, "ws2_32")
 
-#define PORT		8888	// øπæ‡µ» ∆˜∆Æ (FTP Port, 80 : HTTP Port)¡¶ø‹«œø© ∑£¥˝«— ∆˜∆Æ ¿ÃøÎ
-#define PACKET_SIZE	1024	// ∆–≈∂ ≈©±‚ ¡ˆ¡§
-// #define SERVER_IP	"106.101.64.74"	// cmd > ipconfig ∑Œ »Æ¿Œ
+#define PORT		8888	// ÏòàÏïΩÎêú Ìè¨Ìä∏ (FTP Port, 80 : HTTP Port)Ï†úÏô∏ÌïòÏó¨ ÎûúÎç§Ìïú Ìè¨Ìä∏ Ïù¥Ïö©
+#define PACKET_SIZE	1024	// Ìå®ÌÇ∑ ÌÅ¨Í∏∞ ÏßÄÏ†ï
+// #define SERVER_IP	"106.101.64.74"	// cmd > ipconfig Î°ú ÌôïÏù∏
 
 void check_host_name(int hostname) { //This function returns host name for local computer
 	if (hostname == -1) {
