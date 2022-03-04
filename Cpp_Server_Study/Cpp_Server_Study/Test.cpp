@@ -3,7 +3,7 @@
 
 #pragma comment(lib, "ws2_32")
 
-#define PORT		4578	// 예약된 포트 (FTP Port, 80 : HTTP Port)제외하여 랜덤한 포트 이용
+#define PORT		8888	// 예약된 포트 (FTP Port, 80 : HTTP Port)제외하여 랜덤한 포트 이용
 #define PACKET_SIZE	1024	// 패킷 크기 지정
 
 int main() {
@@ -38,6 +38,7 @@ int main() {
 		printf("Socket Error : INVALID_SOCKET");
 		return -1;
 	}
+	printf("Make Socket\n");
 
 	// SOCKADDR_IN
 	// 주소 정보의 집합
@@ -82,6 +83,7 @@ int main() {
 		sizeof(serverAddress)
 	);
 
+	printf("Wait Connect...\n");
 	listen(serverSocket, SOMAXCONN);
 
 	// clientSocket		: 수신을 받을 클라이언트 소켓
@@ -94,7 +96,10 @@ int main() {
 	SOCKET clientSocket;
 	SOCKADDR_IN clientAddress = {};
 	int clientSize = sizeof(clientAddress);
+
+	printf("Finding Client\n");
 	clientSocket = accept(serverSocket, (SOCKADDR*)&clientAddress, &clientSize);
+	printf("Connect Accept\n");
 
 	if (clientSocket == INVALID_SOCKET) {
 		printf("Accept Error : INVALID_SOCKET");
@@ -119,7 +124,7 @@ int main() {
 
 	char buffer[PACKET_SIZE] = {};
 	recv(clientSocket, buffer, PACKET_SIZE, 0);
-	printf("[recv] Receive Message : %s \n", buffer);
+	printf("[Server:recv()] Receive Message : %s \n", buffer);
 
 	char message[] = "[Server] Send Data";
 	send(clientSocket, message, strlen(message), 0);
@@ -129,7 +134,9 @@ int main() {
 	closesocket(clientSocket);
 	closesocket(serverSocket);
 
+	printf("Finished");
 	// WSAStartup에서 지정한 내용을 지워준다.
 	WSACleanup();
+	system("pause");
 	return 0;
 }
