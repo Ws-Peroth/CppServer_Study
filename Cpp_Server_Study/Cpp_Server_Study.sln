@@ -11,6 +11,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CppServer", "CppServer\CppS
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MultiThread_Test", "MultiThread_Test\MultiThread_Test.vcxproj", "{F2F8D334-181E-44BC-B901-4C0A7B3691E2}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MessageProtocolTest", "MessageProtocolTest\MessageProtocolTest.vcxproj", "{87460361-1372-4F96-991F-ABC90BE2E3C6}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GameServer", "MainGameServer\MainGameServer.vcxproj", "{3750894B-9BFA-439D-BEFA-FE47D6E16E66}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -51,6 +55,22 @@ Global
 		{F2F8D334-181E-44BC-B901-4C0A7B3691E2}.Release|x64.Build.0 = Release|x64
 		{F2F8D334-181E-44BC-B901-4C0A7B3691E2}.Release|x86.ActiveCfg = Release|Win32
 		{F2F8D334-181E-44BC-B901-4C0A7B3691E2}.Release|x86.Build.0 = Release|Win32
+		{87460361-1372-4F96-991F-ABC90BE2E3C6}.Debug|x64.ActiveCfg = Debug|x64
+		{87460361-1372-4F96-991F-ABC90BE2E3C6}.Debug|x64.Build.0 = Debug|x64
+		{87460361-1372-4F96-991F-ABC90BE2E3C6}.Debug|x86.ActiveCfg = Debug|Win32
+		{87460361-1372-4F96-991F-ABC90BE2E3C6}.Debug|x86.Build.0 = Debug|Win32
+		{87460361-1372-4F96-991F-ABC90BE2E3C6}.Release|x64.ActiveCfg = Release|x64
+		{87460361-1372-4F96-991F-ABC90BE2E3C6}.Release|x64.Build.0 = Release|x64
+		{87460361-1372-4F96-991F-ABC90BE2E3C6}.Release|x86.ActiveCfg = Release|Win32
+		{87460361-1372-4F96-991F-ABC90BE2E3C6}.Release|x86.Build.0 = Release|Win32
+		{3750894B-9BFA-439D-BEFA-FE47D6E16E66}.Debug|x64.ActiveCfg = Debug|x64
+		{3750894B-9BFA-439D-BEFA-FE47D6E16E66}.Debug|x64.Build.0 = Debug|x64
+		{3750894B-9BFA-439D-BEFA-FE47D6E16E66}.Debug|x86.ActiveCfg = Debug|Win32
+		{3750894B-9BFA-439D-BEFA-FE47D6E16E66}.Debug|x86.Build.0 = Debug|Win32
+		{3750894B-9BFA-439D-BEFA-FE47D6E16E66}.Release|x64.ActiveCfg = Release|x64
+		{3750894B-9BFA-439D-BEFA-FE47D6E16E66}.Release|x64.Build.0 = Release|x64
+		{3750894B-9BFA-439D-BEFA-FE47D6E16E66}.Release|x86.ActiveCfg = Release|Win32
+		{3750894B-9BFA-439D-BEFA-FE47D6E16E66}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

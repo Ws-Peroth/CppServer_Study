@@ -4,7 +4,7 @@
 
 #pragma comment(lib, "ws2_32")
 
-#define PORT		8888	// 예약된 포트 (FTP Port, 80 : HTTP Port)제외하여 랜덤한 포트 이용
+#define PORT		14233	// 예약된 포트 (FTP Port, 80 : HTTP Port)제외하여 랜덤한 포트 이용
 #define PACKET_SIZE	1024	// 패킷 크기 지정
 
 void check_host_name(int hostname) { //This function returns host name for local computer
@@ -34,7 +34,7 @@ char* getIP() {
 	check_host_name(hostname);
 	host_entry = gethostbyname(host); //find host information
 	check_host_entry(host_entry);
-	IP = inet_ntoa(*((struct in_addr*)host_entry->h_addr_list[0])); //Convert into IP string
+	IP = inet_ntoa(*((struct in_addr*)host_entry->h_addr_list[3])); //Convert into IP string
 	printf("Current Host Name: %s\n", host);
 	printf("Host IP: %s\n", IP);
 	return IP;
@@ -45,37 +45,34 @@ int main() {
 	WSAStartup(MAKEWORD(2, 2), &wsaData);
 
 	SOCKET clientSocket;
+	clientSocket = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP);
+
+	if (clientSocket == INVALID_SOCKET) {
+		printf("Socket Error : INVALID_SOCKET");
+		return -1;
+	}
+
+	SOCKADDR_IN clientAddress = {};
+	ZeroMemory(&clientAddress, sizeof(clientAddress));
+	clientAddress.sin_family = AF_INET;
+	clientAddress.sin_port = htons(PORT);
+	clientAddress.sin_addr.s_addr = inet_addr(getIP());
+	printf("Wait Connect...\n");
+
+	int connectStatus =
+		connect(clientSocket, (SOCKADDR*)&clientAddress, sizeof(clientAddress));
+
+	if (connectStatus == SOCKET_ERROR) {
+		printf("Socket Error : SOCKET_ERROR\n");
+		return -1;
+	}
+	printf("Success Connection\n");
 
 	while (1) {
-		clientSocket = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP);
-		if (clientSocket == INVALID_SOCKET) {
-			printf("Socket Error : INVALID_SOCKET");
-			return -1;
-		}
-
-
-		SOCKADDR_IN clientAddress = {};
-		ZeroMemory(&clientAddress, sizeof(clientAddress));
-		clientAddress.sin_family = AF_INET;
-		clientAddress.sin_port = htons(PORT);
-		clientAddress.sin_addr.s_addr = inet_addr(getIP());
-
-		printf("Wait Connect...\n");
-
-
-		int connectStatus =
-			connect(clientSocket, (SOCKADDR*)&clientAddress, sizeof(clientAddress));
-
-		if (connectStatus == SOCKET_ERROR) {
-			printf("Socket Error : SOCKET_ERROR\n");
-			return -1;
-		}
-		printf("Success Connection\n");
-
 		char message[] = "[Client] Send Data";
-		send(clientSocket, message, strlen(message), 0);
+		send(clientSocket, message, strlen(message) + 1, 0);
 
-		char buffer[PACKET_SIZE] = {};
+		char buffer[PACKET_SIZE] = { 0 };
 		recv(clientSocket, buffer, PACKET_SIZE, 0);
 
 
